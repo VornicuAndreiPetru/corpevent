@@ -1,0 +1,109 @@
+<div class="container l2-exec-page">
+
+  <h2 class="page-title">L2 – Solicitări preluate (Exec)</h2>
+
+
+  <div *ngIf="loading" class="text-center mt-5">
+    <div class="spinner-border"></div>
+  </div>
+
+
+  <div *ngIf="!loading && requests.length === 0" class="empty-state">
+    📭 Nu există solicitări în L2.
+  </div>
+
+
+  <div class="requests-grid" *ngIf="!loading && requests.length > 0">
+
+    <div class="request-card"
+         *ngFor="let r of requests"
+         [class.locked]="r.preliminaryDecision">
+
+
+      <div class="card-header">
+        <div>
+          <div class="event-name">{{ r.event.name }}</div>
+          <div class="event-date">
+            {{ r.event.eventDate | date:'dd MMM yyyy, HH:mm' }}
+          </div>
+        </div>
+
+        <span class="badge"
+              [class.badge-success]="r.preliminaryDecision === 'POZITIV'"
+              [class.badge-danger]="r.preliminaryDecision === 'NEGATIV'"
+              [class.badge-secondary]="!r.preliminaryDecision">
+          {{ r.preliminaryDecision || 'În analiză' }}
+        </span>
+      </div>
+
+
+      <div class="info-grid">
+        <div>
+          <label>Solicitant</label>
+          <span>{{ r.requesterName }}</span>
+        </div>
+
+        <div>
+          <label>Companie</label>
+          <span>{{ r.company }}</span>
+        </div>
+
+        <div>
+          <label>Email</label>
+          <span>{{ r.email }}</span>
+        </div>
+
+        <div>
+          <label>Telefon</label>
+          <span>{{ r.phone }}</span>
+        </div>
+      </div>
+
+
+      <div class="comment-section">
+        <label>Comentariu preliminar</label>
+        <textarea
+          class="form-control"
+          rows="2"
+          [(ngModel)]="comments[r.id]"
+          [disabled]="r.preliminaryDecision"
+          placeholder="Scrie motivația avizului preliminar">
+        </textarea>
+      </div>
+
+      <div class="actions" *ngIf="!r.preliminaryDecision">
+
+
+        <ng-container *ngIf="isDirectFinal(r); else preliminaryFlow">
+
+          <button class="btn btn-success"
+                  (click)="decide(r.id, 'POZITIV')">
+            Admitere finală
+          </button>
+
+          <button class="btn btn-outline-danger"
+                  (click)="decide(r.id, 'NEGATIV')">
+            Respinge definitiv
+          </button>
+
+        </ng-container>
+
+
+        <ng-template #preliminaryFlow>
+          <button class="btn btn-success"
+                  (click)="decide(r.id, 'POZITIV')">
+            Aviz preliminar pozitiv
+          </button>
+
+          <button class="btn btn-outline-danger"
+                  (click)="decide(r.id, 'NEGATIV')">
+            Aviz preliminar negativ
+          </button>
+        </ng-template>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

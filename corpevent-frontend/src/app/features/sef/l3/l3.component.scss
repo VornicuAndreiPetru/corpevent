@@ -1,0 +1,22 @@
+/* rând finalizat */
+tr.locked {
+  background-color: #f8fafc;
+  opacity: 0.75;
+
+  textarea,
+  button {
+    pointer-events: none;
+  }
+}
+
+textarea:disabled {
+  background-color: #f1f5f9;
+  cursor: not-allowed;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 6px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

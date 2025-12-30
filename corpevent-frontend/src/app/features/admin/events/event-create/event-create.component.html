@@ -1,0 +1,86 @@
+<h2>Creează eveniment</h2>
+
+<form class="card p-3 mt-3"
+      #f="ngForm"
+      (ngSubmit)="create(f)">
+
+  <div class="mb-2">
+    <label>Nume</label>
+    <input class="form-control"
+           [(ngModel)]="form.name"
+           name="name"
+           required
+           minlength="3"
+           #name="ngModel">
+
+    <div class="text-danger small" *ngIf="name.invalid && name.touched">
+      Numele trebuie să aibă minim 3 caractere
+    </div>
+  </div>
+
+
+  <div class="mb-2">
+    <label>Tip</label>
+    <select class="form-control"
+            [(ngModel)]="form.type"
+            name="type"
+            required
+            #type="ngModel">
+      <option value="">-- selectează --</option>
+      <option value="PRODUS_NOU">Produs nou</option>
+      <option value="ACTUALIZARI_MAJORE">Actualizări majore</option>
+    </select>
+
+    <div class="text-danger small" *ngIf="type.invalid && type.touched">
+      Tipul este obligatoriu
+    </div>
+  </div>
+
+
+  <div class="mb-2">
+    <label>Descriere</label>
+    <textarea class="form-control"
+              [(ngModel)]="form.description"
+              name="description"
+              maxlength="500"></textarea>
+  </div>
+
+
+  <div class="mb-2">
+    <label>Data</label>
+    <input type="datetime-local"
+           class="form-control"
+           [(ngModel)]="form.eventDate"
+           name="eventDate"
+           required
+           #eventDate="ngModel">
+
+    <div class="text-danger small" *ngIf="eventDate.invalid && eventDate.touched">
+      Data evenimentului este obligatorie
+    </div>
+  </div>
+
+
+  <div class="mb-2">
+    <label>Număr locuri</label>
+    <input type="number"
+           class="form-control"
+           [(ngModel)]="form.maxPlaces"
+           name="maxPlaces"
+           required
+           min="1"
+           #maxPlaces="ngModel">
+
+    <div class="text-danger small" *ngIf="maxPlaces.invalid && maxPlaces.touched">
+      Numărul de locuri trebuie să fie minim 1
+    </div>
+  </div>
+
+  <button class="btn btn-primary mt-3"
+          [disabled]="f.invalid">
+    Creează
+  </button>
+
+  <div *ngIf="success" class="alert alert-success mt-3">{{ success }}</div>
+  <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+</form>

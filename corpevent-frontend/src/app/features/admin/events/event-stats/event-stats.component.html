@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <h2>Statistici Evenimente</h2>
+
+  <div *ngIf="loading" class="text-center mt-4">
+    <div class="spinner-border"></div>
+  </div>
+
+  <div *ngIf="!loading && stats.length === 0"
+       class="alert alert-info mt-3">
+    Nu există statistici disponibile.
+  </div>
+
+  <div class="row" *ngIf="!loading && stats.length > 0">
+    <div class="col-md-6 col-lg-4 mb-3"
+         *ngFor="let s of stats">
+
+      <div class="card h-100 shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <strong>{{ s.eventName }}</strong>
+        </div>
+
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              🕒 Nepreluate (L1): <strong>{{ s.l1Nepreluate }}</strong>
+            </li>
+            <li class="list-group-item">
+              📋 Preluate (L2): <strong>{{ s.l2Preluate }}</strong>
+            </li>
+            <li class="list-group-item text-success">
+              ✅ Admise (L3): <strong>{{ s.l3Admise }}</strong>
+            </li>
+            <li class="list-group-item text-danger">
+              ❌ Respinge (L4): <strong>{{ s.l4Respinse }}</strong>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

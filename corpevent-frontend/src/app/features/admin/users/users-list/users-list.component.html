@@ -1,0 +1,81 @@
+<div class="container mt-4 user-list-page">
+
+
+  <div class="page-header mb-4">
+    <h2>Lista utilizatorilor</h2>
+    <p class="text-muted">Vizualizare utilizatori interni și rolurile asociate</p>
+  </div>
+
+  <div *ngIf="loading" class="text-center my-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+
+  <div *ngIf="!loading" class="card shadow-sm">
+    <div class="card-body p-0">
+
+      <table class="table table-hover mb-0">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Nume</th>
+          <th>Roluri</th>
+          <th>Status</th>
+          <th>Acțiuni</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let u of users">
+          <td class="text-muted">#{{ u.id }}</td>
+
+          <td>
+            <strong>{{ u.username }}</strong>
+          </td>
+
+          <td>{{ u.email }}</td>
+
+          <td>{{ u.firstname }} {{ u.lastname }}</td>
+
+          <td>
+              <span
+                class="role-badge"
+                *ngFor="let r of u.roles">
+                {{ r }}
+              </span>
+          </td>
+          <td>
+            <span
+              class="badge"
+              [ngClass]="u.enabled ? 'bg-success' : 'bg-secondary'">
+              {{ u.enabled ? 'Activ' : 'Dezactivat' }}
+            </span>
+          </td>
+
+          <td>
+            <button
+              class="btn btn-sm"
+              [ngClass]="u.enabled ? 'btn-danger' : 'btn-success'"
+              (click)="toggle(u)"
+            >
+              {{ u.enabled ? 'Dezactivează' : 'Activează' }}
+            </button>
+          </td>
+
+
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+
+  <div *ngIf="!loading && users.length === 0" class="alert alert-info mt-4">
+    Nu există utilizatori.
+  </div>
+
+</div>

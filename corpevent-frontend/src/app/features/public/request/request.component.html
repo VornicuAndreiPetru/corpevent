@@ -1,0 +1,123 @@
+<div class="request-page d-flex justify-content-center align-items-center">
+
+  <div class="request-card shadow-lg">
+
+    <div *ngIf="loading" class="text-center py-5">
+      <div class="spinner-border text-primary"></div>
+    </div>
+
+    <div *ngIf="!loading && event">
+
+      <div class="request-header mb-4 text-center">
+        <h4 class="text-muted mb-1">Solicitare acces</h4>
+        <h2 class="fw-bold">{{ event.name }}</h2>
+        <p class="text-secondary mb-0">
+          📅 {{ event.eventDate | date:'dd MMM yyyy, HH:mm' }}
+        </p>
+      </div>
+
+      <div *ngIf="errors?.general" class="alert alert-danger text-center">
+        {{ errors.general }}
+      </div>
+
+
+      <div *ngIf="message" class="alert alert-success text-center">
+        {{ message }}
+      </div>
+
+      <hr>
+
+
+      <form (ngSubmit)="submitRequest()" novalidate>
+
+        <div class="mb-3">
+          <label class="form-label">Nume solicitant</label>
+          <input type="text"
+                 class="form-control"
+                 [(ngModel)]="requesterName"
+                 name="requesterName"
+                 [class.is-invalid]="errors?.requesterName">
+
+          <div class="invalid-feedback">
+            {{ errors?.requesterName }}
+          </div>
+        </div>
+
+
+        <div class="mb-3">
+          <label class="form-label">Companie</label>
+          <input type="text"
+                 class="form-control"
+                 [(ngModel)]="company"
+                 name="company"
+                 [class.is-invalid]="errors?.company">
+
+          <div class="invalid-feedback">
+            {{ errors?.company }}
+          </div>
+        </div>
+
+
+        <div class="mb-3">
+          <label class="form-label">Telefon</label>
+          <input type="text"
+                 class="form-control"
+                 [(ngModel)]="phone"
+                 name="phone"
+                 placeholder="07XXXXXXXX"
+                 [class.is-invalid]="errors?.phone">
+
+          <div class="invalid-feedback">
+            {{ errors?.phone }}
+          </div>
+        </div>
+
+
+        <div class="mb-4">
+          <label class="form-label">Email</label>
+          <input type="email"
+                 class="form-control"
+                 [(ngModel)]="email"
+                 name="email"
+                 [class.is-invalid]="errors?.email">
+
+          <div class="invalid-feedback">
+            {{ errors?.email }}
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Status client</label>
+
+          <select class="form-control"
+                  [(ngModel)]="clientStatus"
+                  name="clientStatus"
+                  [class.is-invalid]="errors?.clientStatus">
+
+            <option value="">-- selectează --</option>
+            <option value="CLIENT_NOU">Client nou</option>
+            <option value="CLIENT_EXISTENT">Client existent</option>
+          </select>
+
+          <div class="invalid-feedback">
+            {{ errors?.clientStatus }}
+          </div>
+        </div>
+
+
+        <button class="btn btn-primary w-100 mb-3"
+                type="submit"
+                [disabled]="event.availablePlaces <= 0">
+          Trimite solicitarea
+        </button>
+
+        <button type="button"
+                class="btn btn-outline-secondary w-100"
+                routerLink="/"
+                (click)="back()">
+          ← Înapoi la evenimente
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>

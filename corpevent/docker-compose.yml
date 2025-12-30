@@ -1,0 +1,21 @@
+services:
+  oracle-db:
+    image: gvenzl/oracle-free:23.5-faststart
+    container_name: oracle23ai
+    ports:
+      - "1521:1521"
+    env_file:
+      - .env
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD}
+      APP_USER: ${APP_USER}
+      APP_USER_PASSWORD: ${APP_USER_PASSWORD}
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      retries: 10
+
+volumes:
+  oracle-data:

@@ -1,0 +1,104 @@
+<div class="container l2-sef-page">
+
+  <h2 class="page-title">L2 – Solicitări preluate (Șef)</h2>
+
+
+  <div *ngIf="loading" class="text-center mt-5">
+    <div class="spinner-border"></div>
+  </div>
+
+
+  <div *ngIf="!loading && requests.length === 0" class="empty-state">
+    Nu există solicitări în L2.
+  </div>
+
+
+  <div class="requests-grid" *ngIf="!loading && requests.length > 0">
+
+    <div class="request-card" *ngFor="let r of requests">
+
+
+      <div class="card-header">
+        <div>
+          <div class="event-name">{{ r.event.name }}</div>
+          <div class="event-date">
+            {{ r.event.eventDate | date:'dd MMM yyyy, HH:mm' }}
+          </div>
+        </div>
+
+        <span class="badge"
+              [class.badge-success]="r.preliminaryDecision === 'POZITIV'"
+              [class.badge-danger]="r.preliminaryDecision === 'NEGATIV'"
+              [class.badge-secondary]="!r.preliminaryDecision">
+          {{ r.preliminaryDecision || 'Fără aviz preliminar' }}
+        </span>
+      </div>
+
+
+      <div class="info-grid">
+        <div>
+          <label>Solicitant</label>
+          <span>{{ r.requesterName }}</span>
+        </div>
+
+        <div>
+          <label>Companie</label>
+          <span>{{ r.company }}</span>
+        </div>
+
+        <div>
+          <label>Email</label>
+          <span>{{ r.email }}</span>
+        </div>
+
+        <div>
+          <label>Telefon</label>
+          <span>{{ r.phone }}</span>
+        </div>
+
+        <div>
+          <label>Exec preluare</label>
+          <span>{{ r.execName || '-' }}</span>
+        </div>
+
+        <div>
+          <label>Data preluării</label>
+          <span>{{ r.takenAt | date:'dd MMM yyyy, HH:mm' }}</span>
+        </div>
+      </div>
+
+
+      <div class="comments">
+        <div class="comment">
+          <label>Comentariu preliminar</label>
+          <p>{{ r.preliminaryComment || '—' }}</p>
+        </div>
+
+        <div class="comment">
+          <label>Comentariu final</label>
+          <textarea
+            class="form-control"
+            rows="2"
+            [(ngModel)]="comments[r.id]"
+            placeholder="Introdu comentariul final">
+          </textarea>
+        </div>
+      </div>
+
+
+      <div class="actions">
+        <button class="btn btn-success"
+                (click)="decide(r.id, 'POZITIV')"
+                [disabled]="r.event.availablePlaces <= 0">
+          Aviz final pozitiv
+        </button>
+
+        <button class="btn btn-outline-danger"
+                (click)="decide(r.id, 'NEGATIV')">
+          Aviz final negativ
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+.organigram-page {
+  min-height: calc(100vh - 80px);
+  padding: 3rem;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.tree-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.node {
+  background: white;
+  border-radius: 14px;
+  padding: 1.2rem 1.5rem;
+  min-width: 220px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.node.sef {
+  border-top: 5px solid #0d6efd;
+}
+
+.node.exec {
+  border-top: 5px solid #198754;
+}
+
+.avatar {
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.role {
+  font-size: .85rem;
+  color: #6c757d;
+}
+
+.email {
+  font-size: .8rem;
+  color: #adb5bd;
+}
+
+.vertical-line {
+  width: 2px;
+  height: 40px;
+  background: #ced4da;
+  margin: 1rem 0;
+}
+
+.exec-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}

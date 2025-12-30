@@ -1,0 +1,59 @@
+<div class="login-page">
+
+
+  <div class="login-top-bar">
+    <button class="btn btn-outline-secondary btn-sm"
+            routerLink="/"
+            (click)="back()">
+      ← Înapoi la evenimente
+    </button>
+  </div>
+
+
+  <div class="login-container">
+    <div class="login-card shadow">
+
+      <h2 class="text-center mb-2">Autentificare internă</h2>
+      <p class="text-muted text-center mb-4">
+        Acces angajați Corpevent
+      </p>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <form (ngSubmit)="login()">
+
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="username"
+            name="username"
+            required
+          >
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Parolă</label>
+          <input
+            type="password"
+            class="form-control"
+            [(ngModel)]="password"
+            name="password"
+            required
+          >
+        </div>
+
+        <button type="submit"
+                class="btn btn-primary w-100">
+          Login
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

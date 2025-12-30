@@ -1,0 +1,61 @@
+
+
+<div class="container mt-4">
+  <h2>Organigramă</h2>
+
+
+  <form class="card p-3 mt-3 mb-4" (ngSubmit)="assign()">
+    <div class="row">
+      <div class="col">
+        <label>ID Execuție</label>
+        <input class="form-control" [(ngModel)]="model.execId" name="execId">
+      </div>
+
+      <div class="col">
+        <label>ID Șef</label>
+        <input class="form-control" [(ngModel)]="model.sefId" name="sefId">
+      </div>
+    </div>
+
+    <button class="btn btn-secondary mt-3">Asignează</button>
+
+    <div *ngIf="message" class="alert alert-success mt-2">{{ message }}</div>
+    <div *ngIf="error" class="alert alert-danger mt-2">{{ error }}</div>
+  </form>
+
+
+
+
+
+  <div *ngIf="!loading" class="org-grid">
+
+    <div class="sef-wrapper card shadow-sm"
+         *ngFor="let node of tree">
+
+
+      <div class="card-header sef-header">
+        👔 {{ node.sef.firstname }} {{ node.sef.lastname }}
+        <small class="text-muted d-block">
+          ID: {{ node.sef.id }}
+        </small>
+      </div>
+
+
+      <div class="card-body exec-body">
+        <div class="exec-card"
+             *ngFor="let e of node.execs">
+          👨‍💼 {{ e.firstname }} {{ e.lastname }}
+          <div class="exec-id">ID: {{ e.id }}</div>
+        </div>
+
+        <div *ngIf="node.execs.length === 0"
+             class="text-muted fst-italic">
+          Fără execi asignați
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

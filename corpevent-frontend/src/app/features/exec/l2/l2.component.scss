@@ -1,0 +1,105 @@
+.l2-exec-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem 1rem;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+
+.requests-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+
+.request-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: opacity .2s ease;
+}
+
+
+.request-card.locked {
+  opacity: .6;
+  pointer-events: none;
+}
+
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.event-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.event-date {
+  font-size: .8rem;
+  color: #6c757d;
+}
+
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.info-grid label {
+  font-size: .7rem;
+  text-transform: uppercase;
+  color: #6c757d;
+}
+
+.info-grid span {
+  font-size: .9rem;
+  font-weight: 500;
+  padding-left: 5px ;
+}
+
+.comment-section label {
+  font-size: .75rem;
+  color: #6c757d;
+  margin-bottom: .3rem;
+  display: block;
+}
+
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .8rem;
+}
+
+
+.badge {
+  padding: .4rem .7rem;
+  border-radius: 999px;
+  font-size: .7rem;
+}
+
+.badge-success { background: #d1e7dd; color: #0f5132; }
+.badge-danger { background: #f8d7da; color: #842029; }
+.badge-secondary { background: #e2e3e5; color: #41464b; }
+
+
+.empty-state {
+  text-align: center;
+  font-size: 1rem;
+  padding: 3rem;
+  background: #f8f9fa;
+  border-radius: 16px;
+}

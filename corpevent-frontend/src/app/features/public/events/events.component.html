@@ -1,0 +1,83 @@
+<div class="container mt-4 events-page">
+
+
+  <div class="d-flex justify-content-between align-items-center mb-4 top-bar">
+    <div></div>
+
+    <button class="btn btn-outline-secondary btn-sm"
+            (click)="goToLogin()">
+      Login angajați
+    </button>
+  </div>
+
+
+  <div class="text-center mb-5">
+    <h1 class="fw-bold">Evenimente Corporate</h1>
+    <p class="text-muted">
+      Descoperă evenimentele disponibile și solicită acces rapid.
+    </p>
+  </div>
+
+
+  <div *ngIf="loading" class="text-center my-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+
+  <div class="row" *ngIf="!loading && events.length > 0">
+    <div class="col-lg-4 col-md-6 mb-4"
+         *ngFor="let e of events">
+
+      <div class="event-card h-100">
+
+        <div class="event-card-header">
+          <span class="badge"
+                [ngClass]="{
+                  'bg-primary': e.type === 'PRODUS_NOU',
+                  'bg-warning text-dark': e.type === 'ACTUALIZARI_MAJORE'
+                }">
+            {{ e.type === 'PRODUS_NOU' ? 'Produs nou' : 'Actualizări majore' }}
+          </span>
+        </div>
+
+        <div class="event-card-body">
+          <h5 class="event-title">{{ e.name }}</h5>
+
+          <div class="event-meta">
+            <div>
+              <i class="bi bi-calendar-event"></i>
+              {{ e.eventDate | date:'dd MMM yyyy, HH:mm' }}
+            </div>
+
+            <div>
+              <i class="bi bi-people"></i>
+              {{ e.availablePlaces }} locuri disponibile
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card-footer">
+          <button
+            class="btn btn-primary w-100"
+            [disabled]="e.availablePlaces <= 0"
+            (click)="goToRequest(e.id)"
+          >
+            Solicită acces
+          </button>
+
+          <small *ngIf="e.availablePlaces <= 0"
+                 class="text-danger d-block mt-2 text-center">
+            Eveniment complet
+          </small>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && events.length === 0"
+       class="alert alert-info text-center">
+    Nu există evenimente disponibile momentan.
+  </div>
+
+</div>

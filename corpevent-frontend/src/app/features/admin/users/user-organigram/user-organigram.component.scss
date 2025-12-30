@@ -1,0 +1,45 @@
+/* GRID CU CARDURI DE ȘEFI */
+.org-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* CARD ȘEF */
+.sef-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* HEADER ȘEF */
+.sef-header {
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+  color: white;
+  font-weight: 600;
+}
+
+/* BODY EXECI */
+.exec-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #f8f9fa;
+}
+
+/* CARD EXEC */
+.exec-card {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 10px 12px;
+  min-width: 140px;
+  text-align: center;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+}
+
+.exec-id {
+  font-size: 0.8rem;
+  color: #6c757d;
+}

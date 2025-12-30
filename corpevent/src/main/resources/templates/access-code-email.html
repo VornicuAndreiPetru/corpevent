@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Cod acces eveniment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 24px 32px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            color: #333333;
+        }
+        .content p {
+            font-size: 14px;
+            color: #555555;
+            line-height: 1.6;
+        }
+        .code-box {
+            margin: 24px 0;
+            text-align: center;
+        }
+        .code {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 24px;
+            letter-spacing: 4px;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 32px;
+            font-size: 12px;
+            color: #999999;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Codul tău de acces la eveniment</h1>
+    </div>
+    <div class="content">
+        <p>Bună,</p>
+
+        <p>
+            Solicitarea ta de participare la eveniment a fost <strong>acceptată</strong>.<br/>
+            Mai jos găsești codul unic de acces:
+        </p>
+
+        <div class="code-box">
+            <span class="code">{{CODE}}</span>
+        </div>
+
+        <p>Te rugăm să păstrezi acest email și să nu distribui codul altor persoane.</p>
+
+        <p>
+            Mulțumim și te așteptăm la eveniment!<br/>
+            <strong>Echipa Corpevent</strong>
+        </p>
+    </div>
+
+    <div class="footer">
+        Acesta este un email generat automat. Te rugăm să nu răspunzi.
+    </div>
+</div>
+</body>
+</html>

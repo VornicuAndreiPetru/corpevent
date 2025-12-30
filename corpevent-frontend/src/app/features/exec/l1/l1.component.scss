@@ -1,0 +1,61 @@
+.l1-page {
+
+  .page-header {
+    h2 {
+      font-weight: 700;
+    }
+  }
+
+  table {
+
+    thead {
+      background: #f8fafc;
+
+      th {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #64748b;
+        border-bottom: 1px solid #e5e7eb;
+      }
+    }
+
+    tbody tr:hover {
+      background-color: #f9fafb;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+  }
+
+  .email-link {
+    color: #2563eb;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .event-name {
+    font-weight: 500;
+  }
+
+  .places-badge {
+    display: inline-block;
+    min-width: 36px;
+    text-align: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: #166534;
+    font-weight: 600;
+    font-size: 0.75rem;
+
+    &.full {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+  }
+}

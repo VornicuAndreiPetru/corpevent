@@ -1,0 +1,46 @@
+.user-list-page {
+
+  .page-header {
+    h2 {
+      font-weight: 700;
+    }
+  }
+
+  table {
+    thead {
+      background: #f8fafc;
+
+      th {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #64748b;
+        border-bottom: 1px solid #e5e7eb;
+      }
+    }
+
+    tbody tr {
+      transition: background 0.15s ease;
+
+      &:hover {
+        background: #f9fafb;
+      }
+    }
+
+    td {
+      vertical-align: middle;
+    }
+  }
+
+  .role-badge {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #1e3a8a;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+}

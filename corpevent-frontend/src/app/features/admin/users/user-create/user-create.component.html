@@ -1,0 +1,93 @@
+<h2>Creează utilizator</h2>
+
+<form class="card p-3 mt-3"
+      #f="ngForm"
+      (ngSubmit)="create(f)">
+
+
+  <div class="mb-2">
+    <label>Username</label>
+    <input class="form-control"
+           [(ngModel)]="form.username"
+           name="username"
+           required
+           minlength="3"
+           #username="ngModel">
+
+    <div class="text-danger small" *ngIf="username.invalid && username.touched">
+      Username minim 3 caractere
+    </div>
+  </div>
+
+
+  <div class="mb-2">
+    <label>Parolă</label>
+    <input type="password"
+           class="form-control"
+           [(ngModel)]="form.password"
+           name="password"
+           required
+           minlength="6"
+           #password="ngModel">
+
+    <div class="text-danger small" *ngIf="password.invalid && password.touched">
+      Parola trebuie să aibă minim 6 caractere
+    </div>
+  </div>
+
+
+  <div class="mb-2">
+    <label>Email</label>
+    <input class="form-control"
+           [(ngModel)]="form.email"
+           name="email"
+           required
+           email
+           #email="ngModel">
+
+    <div class="text-danger small" *ngIf="email.invalid && email.touched">
+      Email invalid
+    </div>
+  </div>
+
+
+  <div class="mb-2">
+    <label>Prenume</label>
+    <input class="form-control"
+           [(ngModel)]="form.firstname"
+           name="firstname"
+           required>
+  </div>
+
+
+  <div class="mb-2">
+    <label>Nume</label>
+    <input class="form-control"
+           [(ngModel)]="form.lastname"
+           name="lastname"
+           required>
+  </div>
+
+
+  <div class="mb-2">
+    <label>Rol</label>
+    <select class="form-control"
+            [(ngModel)]="form.role"
+            name="role"
+            required>
+      <option value="">-- selectează --</option>
+      <option value="ADMIN_USER">ADMIN_USER</option>
+      <option value="ADMIN_EVENT">ADMIN_EVENT</option>
+      <option value="VALIDATOR_EXEC">VALIDATOR_EXEC</option>
+      <option value="VALIDATOR_SEF">VALIDATOR_SEF</option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary mt-3"
+          [disabled]="f.invalid">
+    Creează
+  </button>
+
+  <div *ngIf="success" class="alert alert-success mt-3">{{ success }}</div>
+  <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+</form>

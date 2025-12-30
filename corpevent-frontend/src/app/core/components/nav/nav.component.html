@@ -1,0 +1,61 @@
+<nav class="app-navbar" *ngIf="auth.isLoggedIn()">
+  <div class="container-fluid d-flex align-items-center">
+
+    <div class="brand">
+      Corpevent
+    </div>
+
+
+    <ul class="nav-links">
+
+
+      <ng-container *ngIf="auth.hasRole('ADMIN_USER')">
+        <li><a routerLink="/admin/users/create" routerLinkActive="active">Creare utilizatori</a></li>
+        <li><a routerLink="/admin/users/list" routerLinkActive="active">Lista utilizatori</a></li>
+        <li><a routerLink="/admin/users/organigrama" routerLinkActive="active">Organigramă</a></li>
+      </ng-container>
+
+
+      <ng-container *ngIf="auth.hasRole('ADMIN_EVENT')">
+        <li><a routerLink="/admin/events/create" routerLinkActive="active">Creare eveniment</a></li>
+        <li><a routerLink="/admin/events/list" routerLinkActive="active">Evenimente</a></li>
+      </ng-container>
+
+
+      <ng-container *ngIf="auth.hasRole('VALIDATOR_EXEC')">
+        <li><a routerLink="/exec/l1" routerLinkActive="active">L1</a></li>
+        <li><a routerLink="/exec/l2" routerLinkActive="active">L2</a></li>
+      </ng-container>
+
+
+      <ng-container *ngIf="auth.hasRole('VALIDATOR_SEF')">
+        <li><a routerLink="/sef/l2" routerLinkActive="active">L2</a></li>
+        <li><a routerLink="/sef/l3" routerLinkActive="active">L3</a></li>
+        <li><a routerLink="/sef/l4" routerLinkActive="active">L4</a></li>
+        <li><a routerLink="/sef/organigrama" routerLinkActive="active">Organigrama mea</a></li>
+      </ng-container>
+
+
+      <ng-container *ngIf="
+  auth.hasRole('ADMIN_EVENT') ||
+  auth.hasRole('VALIDATOR_EXEC') ||
+  auth.hasRole('VALIDATOR_SEF')
+">
+        <li>
+          <a routerLink="/events/stats" routerLinkActive="active">
+            Statistici evenimente
+          </a>
+        </li>
+      </ng-container>
+
+
+    </ul>
+
+
+    <div class="user-area">
+      <span class="username">{{ auth.username() }}</span>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+
+  </div>
+</nav>

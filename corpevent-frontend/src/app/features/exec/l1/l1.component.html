@@ -1,0 +1,82 @@
+<div class="container mt-4 l1-page">
+
+
+  <div class="page-header mb-4">
+    <h2>Solicitări nepreluate (L1)</h2>
+    <p class="text-muted mb-0">
+      Lista solicitărilor noi care pot fi preluate pentru analiză
+    </p>
+  </div>
+
+
+  <div *ngIf="loading" class="text-center my-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+
+  <div *ngIf="!loading && requests.length > 0" class="card shadow-sm">
+    <div class="card-body p-0">
+
+      <table class="table table-hover mb-0">
+        <thead>
+        <tr>
+          <th>Solicitant</th>
+          <th>Companie</th>
+          <th>Email</th>
+          <th>Eveniment</th>
+          <th>Locuri rămase</th>
+          <th class="text-end">Acțiune</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let r of requests">
+
+          <td>
+            <strong>{{ r.requesterName }}</strong>
+          </td>
+
+          <td>{{ r.company }}</td>
+
+          <td>
+            <a href="mailto:{{ r.email }}" class="email-link">
+              {{ r.email }}
+            </a>
+          </td>
+
+          <td>
+            <div class="event-name">
+              {{ r.event.name }}
+            </div>
+          </td>
+
+          <td>
+            <span
+              class="places-badge"
+              [class.full]="r.event.availablePlaces <= 0">
+              {{ r.event.availablePlaces }}
+            </span>
+          </td>
+
+          <td class="text-end">
+            <button
+              class="btn btn-sm btn-primary"
+              (click)="takeRequest(r.id)"
+              [disabled]="r.event.availablePlaces <= 0">
+              Preia solicitarea
+            </button>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div *ngIf="!loading && requests.length === 0"
+       class="alert alert-info text-center mt-4 shadow-sm">
+    📭 Nu există solicitări în L1.
+  </div>
+
+</div>

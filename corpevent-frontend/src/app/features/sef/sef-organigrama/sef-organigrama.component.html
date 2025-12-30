@@ -1,0 +1,39 @@
+<div class="organigram-page">
+
+  <h2 class="text-center mb-4">Organigrama mea</h2>
+
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border"></div>
+  </div>
+
+
+  <div *ngIf="!loading" class="tree-container">
+
+
+    <div class="node sef">
+      <div class="avatar">👔</div>
+      <div class="name">{{ sefName }}</div>
+      <div class="role">Șef Validator</div>
+    </div>
+
+    <div class="vertical-line" *ngIf="execs.length > 0"></div>
+
+
+    <div class="exec-container">
+      <div class="node exec" *ngFor="let e of execs">
+        <div class="avatar">👨‍💼</div>
+        <div class="name">{{ e.firstname }} {{ e.lastname }}</div>
+        <div class="role">Execuție</div>
+        <div class="email">{{ e.email }}</div>
+      </div>
+    </div>
+
+
+    <div *ngIf="execs.length === 0"
+         class="alert alert-info mt-4 text-center">
+      Nu ai execuții în subordine.
+    </div>
+
+  </div>
+</div>
